@@ -190,13 +190,7 @@ extension QuerySet {
 
   /// Returns the count of objects matching the QuerySet.
   public func count() throws -> Int {
-    var error:NSError?
-    let count:Int? = context.countForFetchRequest(fetchRequest, error: &error)
-
-    if let error = error {
-      throw error
-    }
-
+    let count:Int? = try? context.countForFetchRequest(fetchRequest)
     return count as Int!
   }
 
